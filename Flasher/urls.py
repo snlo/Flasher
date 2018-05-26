@@ -8,7 +8,6 @@ from django.views.i18n import set_language
 from mezzanine.core.views import direct_to_template
 from mezzanine.conf import settings
 
-
 admin.autodiscover()
 
 # Add the urlpatterns for any custom Django applications here.
@@ -96,6 +95,8 @@ urlpatterns += [
     # ("^%s/" % settings.SITE_PREFIX, include("mezzanine.urls"))
 
 ]
+
+
 
 # Adds ``STATIC_URL`` to the context of error pages, so that error
 # pages can use JS, CSS and images.
