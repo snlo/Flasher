@@ -15,7 +15,7 @@ def classify(req):
     page = req.POST.get('page','')
     print(page)
     context['type'] , context['page'] = type ,page
-    # return JsonResponse(context)
+    return JsonResponse(context)
     #根据类别在数据库找到相应数据
     if type == '0':
         goods_list = goods.objects.order_by('sales_Volume').all()
@@ -56,3 +56,17 @@ def classify(req):
         return JsonResponse(context)
     else:
         return  JsonResponse({'status':10022,'message':'query goods isempty'})
+
+@csrf_exempt
+def test(req):
+    context = {'status': 200}
+    number = req.POST.get('number','')
+    context['number'] = number
+    question_id = req.GET.get('question_id','')
+    context['question_id'] = question_id
+    context['total'] = str(int(number) + int(question_id))
+    if number == '1':
+        # return JsonResponse({'status': 200, 'message': 'parameter error'})
+        return JsonResponse(context)
+    else:
+        return JsonResponse({'status': 10021, 'message': 'parameter error'})
